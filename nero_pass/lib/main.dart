@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'config/router.dart';
+import 'config/themes.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,12 +11,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp.router(
+      routeInformationProvider: AppRouter.router.routeInformationProvider,
+      routeInformationParser: AppRouter.router.routeInformationParser,
+      routerDelegate: AppRouter.router.routerDelegate,
+      title: "Avia Saga",
+      debugShowCheckedModeBanner: false,
+      theme: myTheme,
     );
   }
 }
