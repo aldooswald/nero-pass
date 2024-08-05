@@ -1,24 +1,54 @@
 import 'package:go_router/go_router.dart';
+import 'package:nero_pass/presentation/view/attendance_detail_page.dart';
+import 'package:nero_pass/presentation/view/coming_soon_page.dart';
 import 'package:nero_pass/presentation/view/home_page.dart';
+import 'package:nero_pass/presentation/view/attendance_page.dart';
+import 'package:nero_pass/presentation/view/scanner_page.dart';
+import 'package:nero_pass/presentation/view/navigation_page.dart';
 
 class AppRouter {
   static final GoRouter _router = GoRouter(
     initialLocation: '/home',
     routes: [
-      GoRoute(
-        path: '/home',
-        builder: (context, state) => const HomePage(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return NavigationPage(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/home',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: HomePage(),
+            ),
+          ),
+          GoRoute(
+            path: '/attendance',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: AttendancePage(),
+            ),
+          ),
+          GoRoute(
+            path: '/member',
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: ComingSoonPage(),
+            ),
+          ),
+        ],
       ),
-      // GoRoute(
-      //   name: 'security',
-      //   path: '/onboarding/security',
-      //   builder: (context, state) => const OnboardingSecurity(),
-      // ),
-      // GoRoute(
-      //   name: 'register1',
-      //   path: '/onboarding/register/1',
-      //   builder: (context, state) => RegisterFirst(),
-      // ),
+      GoRoute(
+        path: '/scanner',
+        pageBuilder: (context, state) => const NoTransitionPage(
+          child: ScannerPage(),
+        ),
+      ),
+      GoRoute(
+        name: 'attendance-detail',
+        path: '/attendance-detail',
+        pageBuilder: (context, state) => NoTransitionPage(
+          child:
+              AttendanceDetailPage(event: state.uri.queryParameters['event']!),
+        ),
+      ),
     ],
   );
 

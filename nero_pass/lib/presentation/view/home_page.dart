@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../config/themes.dart';
-import '../widget/menu_widget.dart';
+import '../widget/clock_and_date_widget.dart';
+import '../widget/scanner_button_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+    return Material(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: Column(
           children: [
             _buildHeader(),
-            const SizedBox(
-              height: 32,
-            ),
-            _buildMenu(),
-            const SizedBox(
-              height: 32,
-            ),
-            _buildRecentActivity()
+            _buildBody(context),
           ],
         ),
       ),
@@ -33,6 +28,7 @@ class HomePage extends StatelessWidget {
       padding: const EdgeInsets.only(top: 32),
       child: Row(
         mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,60 +45,32 @@ class HomePage extends StatelessWidget {
                         .mediumSize
                         .myColor(AppTextColor.primary)),
               ]),
+          const CircleAvatar(
+            radius: 24,
+            backgroundImage: AssetImage('assets/images/nerosia_logo.png'),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildMenu() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+  Widget _buildBody(BuildContext context) {
+    return Expanded(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Menu",
-                style: const TextStyle()
-                    .bold
-                    .mediumSize
-                    .myColor(AppTextColor.primary)),
-          ],
-        ),
-        const SizedBox(height: 12),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            MenuWidget(
-              icon: 'assets/images/attendance_menu.png',
-              title: 'Attendance',
+            const ClockAndDateWidget(),
+            const SizedBox(height: 32),
+            ScannerCircularButton(
+              onTap: () {
+                context.push('/scanner');
+              },
+              icon: Icons.qr_code,
             ),
           ],
         ),
-      ],
-    );
-  }
-
-  Widget _buildRecentActivity() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("Attendance History",
-                style: const TextStyle()
-                    .bold
-                    .mediumSize
-                    .myColor(AppTextColor.primary)),
-            TextButton(
-              onPressed: () {},
-              child: Text("View All",
-                  style: const TextStyle()
-                      .regular
-                      .small
-                      .myColor(AppTextColor.primary)),
-            )
-          ],
-        ),
-      ],
+      ),
     );
   }
 }

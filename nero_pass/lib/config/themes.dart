@@ -27,7 +27,7 @@ enum AppTextStyle {
   bold,
 }
 
-enum AppTextSize { xs, small, mediumSize, large, xl }
+enum AppTextSize { xs, small, mediumSize, large, xl, jumbo }
 
 enum AppTextColor {
   primary,
@@ -49,6 +49,7 @@ extension TextStyleExtension on TextStyle {
   TextStyle get mediumSize => copyWith(fontSize: 16.0);
   TextStyle get large => copyWith(fontSize: 24.0);
   TextStyle get xl => copyWith(fontSize: 28.0);
+  TextStyle get jumbo => copyWith(fontSize: 48.0);
 
   TextStyle myColor(AppTextColor textColor) {
     switch (textColor) {
