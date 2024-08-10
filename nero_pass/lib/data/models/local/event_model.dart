@@ -13,7 +13,7 @@ class EventModel {
   static final List<EventModel> getEvents = [
     EventModel(
         name: 'One Peace', imageUrl: 'assets/images/events/one_peace.jpg'),
-    EventModel(
-        name: 'Nirankara 2024', imageUrl: 'assets/images/events/one_peace.jpg'),
+    // EventModel(
+    //     name: 'Nirankara 2024', imageUrl: 'assets/images/events/one_peace.jpg'),
   ];
 }

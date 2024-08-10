@@ -38,31 +38,29 @@ class EventWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.asset(
-                  imageUrl,
-                  width: MediaQuery.of(context).size.width * 0.45 * 0.7,
-                  height: MediaQuery.of(context).size.width *
-                      0.45, // Maintain aspect ratio
-                  fit: BoxFit.cover,
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: Image.asset(
+                imageUrl,
+                width: MediaQuery.of(context).size.width * 0.45 * 0.7,
+                height: MediaQuery.of(context).size.width *
+                    0.45, // Maintain aspect ratio
+                fit: BoxFit.cover,
               ),
-              Text(
-                name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: ColorPallete.neroDark,
-                ),
-                textAlign: TextAlign.center,
+            ),
+            Text(
+              name,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: ColorPallete.neroDark,
               ),
-            ],
-          ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );
